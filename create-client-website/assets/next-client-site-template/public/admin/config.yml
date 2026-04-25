@@ -1,0 +1,28 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: settings
+    label: Site Settings
+    files:
+      - file: content/settings/site.json
+        label: Site Settings
+        name: site
+        fields:
+          - { label: Site Name, name: name, widget: string }
+          - { label: Description, name: description, widget: text }
+          - { label: Contact Email, name: email, widget: string }
+  - name: pages
+    label: Pages
+    folder: content/pages
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Slug, name: slug, widget: string }
+      - { label: Description, name: description, widget: text, required: false }
+      - { label: Body, name: body, widget: markdown }

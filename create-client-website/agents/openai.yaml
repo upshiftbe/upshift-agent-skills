@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Client Website"
+  short_description: "Fresh client websites from existing content"
+  default_prompt: "Use $create-client-website to create a fresh redesigned website from this client's current website or business information."
