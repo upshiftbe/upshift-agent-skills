@@ -1,6 +1,6 @@
 ---
 name: create-client-website
-description: Create a fresh, deployable client website from an existing website URL, uploaded screenshots, or provided client information. Use when Codex needs to discover client content, extract or organize pages/copy/assets, ask style-direction questions, and build a redesigned website using pnpm, TypeScript, Next.js, React, Tailwind, lucide-react, tw-animate-css, Decap CMS, ESLint, Prettier, and Netlify deployment.
+description: Create a fresh, deployable client website from an existing website URL, uploaded screenshots, or provided client information. Use when Codex needs to discover client content, extract or organize pages/copy/assets, ask style-direction questions, and build a redesigned website using pnpm, TypeScript, Next.js, React, Tailwind, lucide-react, tw-animate-css, Decap CMS, ESLint, Prettier, and Netlify deployment. Includes the full Impeccable pack (impeccable/) and UI/UX Pro Max (ui-ux-pro-max/, Python search.py + data CSVs) for teach → shape → craft → polish → maintain, data-driven design-system search, Next.js stack guidance, PRODUCT.md/DESIGN.md context, and optional pin/live tooling.
 ---
 
 # Create Client Website
@@ -10,6 +10,18 @@ description: Create a fresh, deployable client website from an existing website 
 Create a new client website from real client inputs. Preserve the client's content and business facts, but create an original design and a fresh deployable codebase.
 
 Use this stack by default for fresh projects: pnpm, TypeScript, Next.js, React, Tailwind, lucide-react, tw-animate-css, Decap CMS, ESLint, Prettier, and Netlify.
+
+## Bundled Impeccable
+
+This skill vendors the complete **Impeccable** tree under [`impeccable/`](impeccable/SKILL.md): shared design laws, brand vs product registers, every command reference under `impeccable/reference/`, and Node scripts under `impeccable/scripts/` (`load-context.mjs`, `pin.mjs`, `live*.mjs`, etc.).
+
+**`<PATH_TO_CREATE_CLIENT_WEBSITE_SKILL>`** means the directory containing *this* `SKILL.md` (sibling of `impeccable/`, `references/`, `assets/`). Resolve it from the workspace path or the user’s skills install location.
+
+For design and implementation quality, follow [references/impeccable-workflow.md](references/impeccable-workflow.md) so discovery and stack work stay aligned with Impeccable setup (context load, register, laws) and command references.
+
+## Bundled UI/UX Pro Max
+
+This skill vendors **[`ui-ux-pro-max/`](ui-ux-pro-max/SKILL.md)** (Python `scripts/search.py`, `core.py`, `design_system.py`, and `data/` CSVs). Use it for **`--design-system`** and domain/stack searches during style direction and shaping. Default **stack flag** for this skill is **`nextjs`** (see `ui-ux-pro-max/SKILL.md` and [references/ui-ux-pro-max-workflow.md](references/ui-ux-pro-max-workflow.md)). Requires Python 3 on the machine running the script.
 
 ## Core Flow
 
@@ -56,9 +68,11 @@ Do not directly copy a proprietary design one-to-one. Translate observed qualiti
 
 Use [references/style-questionnaire.md](references/style-questionnaire.md) and [references/screenshot-style-analysis.md](references/screenshot-style-analysis.md).
 
+Optionally run **UI/UX Pro Max** after you have product type, industry, and style keywords (from inventory or answers): `python3 <PATH_TO_CREATE_CLIENT_WEBSITE_SKILL>/ui-ux-pro-max/scripts/search.py "<keywords>" --design-system -p "<Client name>"`, then `--stack nextjs` for implementation hints. See [references/ui-ux-pro-max-workflow.md](references/ui-ux-pro-max-workflow.md). Treat output as input to the brief, not a substitute for Impeccable laws or client facts.
+
 ## Shape
 
-Follow an Impeccable-style loop: teach, shape, craft, polish, maintain. Use [references/impeccable-workflow.md](references/impeccable-workflow.md).
+Follow the full Impeccable loop: **teach → shape → craft → polish → maintain**. Route each phase with [references/impeccable-workflow.md](references/impeccable-workflow.md), which links into [`impeccable/SKILL.md`](impeccable/SKILL.md) and [`impeccable/reference/`](impeccable/reference/shape.md) (setup, register, shared laws, then shape/craft/polish/extract as needed). Supplement shaping with [references/ui-ux-pro-max-workflow.md](references/ui-ux-pro-max-workflow.md) when you want searchable pattern and palette recommendations.
 
 Create a concise brief before coding:
 
@@ -69,7 +83,7 @@ Create a concise brief before coding:
 - Design system direction: color, type scale, spacing, section rhythm, components, motion
 - CMS collections needed
 
-When working in a repo, write durable decisions into `PRODUCT.md` or `DESIGN.md` if these files already exist or if the project needs them.
+When working in a repo, write durable decisions into `PRODUCT.md` or `DESIGN.md` if these files already exist or if the project needs them. After they exist or change, load context from the **client project root** with `node <PATH_TO_CREATE_CLIENT_WEBSITE_SKILL>/impeccable/scripts/load-context.mjs` (see `impeccable/SKILL.md` setup — consume full JSON, no truncation).
 
 ## Craft
 
@@ -92,9 +106,11 @@ Default implementation expectations:
 - Responsive header, footer, homepage, core content pages, and contact flow
 - Accessible semantic markup and keyboard-friendly navigation
 
-Use [references/design-rules.md](references/design-rules.md) and [references/netlify-decap.md](references/netlify-decap.md).
+Use [references/design-rules.md](references/design-rules.md) and [references/netlify-decap.md](references/netlify-decap.md). For implementation discipline and anti-slop checks, apply the shared design laws and register guidance in [`impeccable/SKILL.md`](impeccable/SKILL.md).
 
 ## Polish And Validate
+
+Use [`impeccable/reference/polish.md`](impeccable/reference/polish.md) as the primary pre-ship design pass, in addition to the checks below. Run [`impeccable/reference/audit.md`](impeccable/reference/audit.md) when a structured a11y/perf/responsive audit is appropriate. Optionally add the **Pre-Delivery Checklist** in [`ui-ux-pro-max/SKILL.md`](ui-ux-pro-max/SKILL.md) for common UI polish items (icons, hover, contrast, layout breakpoints).
 
 Before finishing:
 
@@ -109,4 +125,4 @@ If a command fails because dependencies are missing, install with pnpm when allo
 
 ## Maintain
 
-After the website exists, consolidate repeated colors, typography, spacing, sections, and components into reusable tokens and components. Keep Decap CMS fields aligned with the implemented sections so non-developers can edit the finished site.
+After the website exists, consolidate repeated colors, typography, spacing, sections, and components into reusable tokens and components. Keep Decap CMS fields aligned with the implemented sections so non-developers can edit the finished site. For systematic extraction, follow [`impeccable/reference/extract.md`](impeccable/reference/extract.md).
